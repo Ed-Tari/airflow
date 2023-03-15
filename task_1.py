@@ -12,7 +12,7 @@ def get_data():
     zipfile = ZipFile(BytesIO(top_doms.content))
     top_data = zipfile.read(TOP_1M_DOMAINS_FILE).decode('utf-8')
 
-with open(TOP_1M_DOMAINS_FILE, 'w') as f:
-    f.write(top_data)
+    with open(TOP_1M_DOMAINS_FILE, 'w') as f:
+        f.write(top_data)
 
 
