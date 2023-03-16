@@ -15,4 +15,5 @@ def get_data():
     with open(TOP_1M_DOMAINS_FILE, 'w') as f:
         f.write(top_data)
 
+print('Done')
 
