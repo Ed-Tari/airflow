@@ -1,2 +1,3 @@
 # airflow_test
-Тестовый
+Тестовый airflow dag
+
