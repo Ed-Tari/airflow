@@ -14,7 +14,7 @@ TOP_1M_DOMAINS_FILE = 'top-1m.csv'
 
 
 def get_data():
-    top_doms = requests(TOP_1M_DOMAINS, strem = True)
+    top_doms = requests.get(TOP_1M_DOMAINS, stream = True)
     zipfile = ZipFile(BytesIO(top_doms.content))
     top_data = zipfile.read(TOP_1M_DOMAINS_FILE).decode('utf-8')
 
@@ -23,11 +23,11 @@ def get_data():
 
 
 def get_stat():
-    top_data_df = pd.read_csv(TOP_1M_DOMAINS_FILE, name = ['rank', 'domain'])
-    top_data_10 = top_data_df[top_data_df['domain'].str.endwith('.ru') ]
+    top_data_df = pd.read_csv(TOP_1M_DOMAINS_FILE,  names = ['rank', 'domain'])
+    top_data_10 = top_data_df[top_data_df['domain'].str.endswith('.ru') ]
     top_data_10 = top_data_10.head(10)
     with open('top_data_10.csv', 'w') as f:
-        f.write(top_data_10.to_csv(idnex = False, header = False))
+        f.write(top_data_10.to_csv(index=  False, header = False))
 
 def print_data():
     with open('top_data_10.csv', 'r') as f:
@@ -57,3 +57,7 @@ t3 = PythonOperator(task_id = 'print_data',
                     dag = dag)
 
 t1 >> t2 >> t3
+
+get_data()
+get_stat()
+print_data()
