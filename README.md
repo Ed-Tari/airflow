@@ -1,3 +1,3 @@
-# airflow_test
-Тестовый airflow dag
+# airflow_project 
+Учебный проект запуска airflow
 
